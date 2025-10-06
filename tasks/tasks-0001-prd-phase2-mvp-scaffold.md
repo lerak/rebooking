@@ -1,0 +1,142 @@
+## Relevant Files
+
+- `Gemfile` - Ruby gem dependencies including Rails 8, Devise, acts_as_tenant, Sidekiq
+- `config/database.yml` - PostgreSQL configuration with UUID extension
+- `config/initializers/devise.rb` - Devise authentication configuration
+- `app/models/business.rb` - Business tenant model
+- `app/models/user.rb` - User model with Devise and tenant association
+- `app/models/customer.rb` - Customer model with tenant scoping
+- `app/models/appointment.rb` - Appointment model with status enum
+- `app/models/message.rb` - Message model (placeholder for Phase 3)
+- `app/models/consent_log.rb` - Consent tracking model
+- `app/controllers/application_controller.rb` - Base controller with tenant scoping
+- `app/controllers/dashboard_controller.rb` - Dashboard metrics view
+- `app/controllers/customers_controller.rb` - Customer CRUD operations
+- `app/controllers/appointments_controller.rb` - Appointment CRUD operations
+- `app/controllers/messages_controller.rb` - Message inbox placeholder
+- `app/controllers/settings/businesses_controller.rb` - Business settings management
+- `config/routes.rb` - Application routes with Turbo Frame support
+- `app/views/layouts/application.html.erb` - Main layout with sidebar navigation
+- `app/views/shared/_nav.html.erb` - Navigation partial with Turbo Frame links
+- `app/views/dashboard/index.html.erb` - Dashboard view with metric cards
+- `app/javascript/controllers/nav_controller.js` - Stimulus controller for active link highlighting
+- `app/javascript/controllers/modal_controller.js` - Stimulus controller for modals
+- `db/seeds.rb` - Seed data with Faker gem
+- `spec/models/user_spec.rb` - User model tests
+- `spec/models/business_spec.rb` - Business model tests
+- `spec/models/customer_spec.rb` - Customer model tests
+- `spec/requests/tenancy_spec.rb` - Multi-tenant isolation tests
+- `spec/rails_helper.rb` - RSpec configuration
+- `spec/factories/businesses.rb` - FactoryBot business factory
+- `spec/factories/users.rb` - FactoryBot user factory
+- `spec/factories/customers.rb` - FactoryBot customer factory
+- `config/tailwind.config.js` - Tailwind CSS configuration
+- `config/sidekiq.yml` - Sidekiq background job configuration
+
+### Notes
+
+- Rails 8 uses Propshaft for assets (not Sprockets)
+- All database tables should use UUID primary keys
+- RSpec tests should achieve 80% minimum coverage
+- Multi-tenancy is enforced at the model and controller level using acts_as_tenant
+- Turbo Frames are used for SPA-like navigation without full page reloads
+- **TDD Approach**: Write tests FIRST before implementing features (Red → Green → Refactor cycle)
+
+## Tasks
+
+- [ ] 1.0 Initialize Rails 8 Application with Core Dependencies
+  - [x] 1.1 Create new Rails 8 app with PostgreSQL database (`rails new . --database=postgresql --skip-test`)
+  - [x] 1.2 Add gems to Gemfile: devise, acts_as_tenant, sidekiq, redis, faker (development), rspec-rails (development/test), factory_bot_rails (development/test)
+  - [x] 1.3 Run `bundle install` to install all dependencies
+  - [x] 1.4 Configure database.yml to enable UUID extension and set up PostgreSQL
+  - [x] 1.5 Create database with `rails db:create`
+
+- [ ] 2.0 Configure Multi-Tenant Architecture with Authentication
+  - [ ] 2.1 **[TDD]** Write spec for Business model validations and associations
+  - [ ] 2.2 Install Devise with `rails generate devise:install`
+  - [ ] 2.3 Configure Devise initializer (secret key, mailer sender, etc.)
+  - [ ] 2.4 Generate Business model as tenant: `rails generate model Business name:string timezone:string`
+  - [ ] 2.5 **[TDD]** Write spec for User model with Devise, roles, and tenant association
+  - [ ] 2.6 Generate User model with Devise: `rails generate devise User`
+  - [ ] 2.7 Add business_id reference to users migration and add role enum column
+  - [ ] 2.8 Enable UUID in migration with `enable_extension 'pgcrypto'` and set `id: :uuid`
+  - [ ] 2.9 Configure acts_as_tenant in Business and User models
+  - [ ] 2.10 Add validations to Business model to pass tests
+  - [ ] 2.11 **[TDD]** Write spec for tenant scoping in ApplicationController
+  - [ ] 2.12 Add tenant scoping to ApplicationController with `set_current_tenant_through_filter`
+  - [ ] 2.13 Run migrations with `rails db:migrate`
+  - [ ] 2.14 Run specs to verify all tests pass
+
+- [ ] 3.0 Build Database Schema and Core Models
+  - [ ] 3.1 **[TDD]** Write spec for Customer model validations, associations, and tenant scoping
+  - [ ] 3.2 Generate Customer model: `rails generate model Customer first_name:string last_name:string phone:string email:string business:references`
+  - [ ] 3.3 **[TDD]** Write spec for Appointment model validations, associations, statuses, and tenant scoping
+  - [ ] 3.4 Generate Appointment model: `rails generate model Appointment customer:references start_time:datetime end_time:datetime status:integer business:references`
+  - [ ] 3.5 **[TDD]** Write spec for Message model validations, associations, and tenant scoping
+  - [ ] 3.6 Generate Message model: `rails generate model Message customer:references body:text direction:integer status:integer metadata:jsonb business:references`
+  - [ ] 3.7 **[TDD]** Write spec for ConsentLog model validations and associations
+  - [ ] 3.8 Generate ConsentLog model: `rails generate model ConsentLog customer:references consent_text:text consented_at:datetime`
+  - [ ] 3.9 Update all migrations to use UUID primary keys and add indexes
+  - [ ] 3.10 Add acts_as_tenant to Customer, Appointment, and Message models
+  - [ ] 3.11 Add model validations (presence, uniqueness where needed) to pass tests
+  - [ ] 3.12 Add model associations (has_many, belongs_to) to pass tests
+  - [ ] 3.13 Add enums to User (role), Appointment (status), and Message (direction)
+  - [ ] 3.14 Run migrations with `rails db:migrate`
+  - [ ] 3.15 Run specs to verify all model tests pass
+
+- [ ] 4.0 Create Controllers and Routes with Turbo Support
+  - [ ] 4.1 **[TDD]** Write request spec for DashboardController requiring authentication
+  - [ ] 4.2 Generate DashboardController with index action
+  - [ ] 4.3 **[TDD]** Write request spec for CustomersController CRUD with tenant scoping
+  - [ ] 4.4 Generate CustomersController with scaffold actions (index, new, create, edit, update, destroy)
+  - [ ] 4.5 **[TDD]** Write request spec for AppointmentsController CRUD with tenant scoping
+  - [ ] 4.6 Generate AppointmentsController with scaffold actions
+  - [ ] 4.7 **[TDD]** Write request spec for MessagesController index and show
+  - [ ] 4.8 Generate MessagesController with index and show actions only
+  - [ ] 4.9 **[TDD]** Write request spec for Settings::BusinessesController edit and update
+  - [ ] 4.10 Generate Settings::BusinessesController with edit and update actions
+  - [ ] 4.11 Add `before_action :authenticate_user!` to ApplicationController
+  - [ ] 4.12 Implement `set_current_tenant` method in ApplicationController
+  - [ ] 4.13 Configure routes.rb with authenticated root, Devise routes, and resource routes
+  - [ ] 4.14 Add Turbo Frame support to route configuration (data attributes in views)
+  - [ ] 4.15 Create basic view files for all controllers with turbo_frame_tag
+  - [ ] 4.16 Run specs to verify all controller tests pass
+
+- [ ] 5.0 Build Frontend UI with Tailwind and Stimulus
+  - [ ] 5.1 Install Tailwind CSS: `rails tailwindcss:install`
+  - [ ] 5.2 Configure Tailwind config with custom colors (navy #1E3A8A, light blue #60A5FA, etc.)
+  - [ ] 5.3 Create application layout with sidebar navigation structure
+  - [ ] 5.4 Create shared navigation partial (_nav.html.erb) with Turbo Frame links
+  - [ ] 5.5 Add main content turbo_frame to layout with id "main_content"
+  - [ ] 5.6 **[TDD]** Write Stimulus test for nav_controller.js active link behavior
+  - [ ] 5.7 Generate Stimulus controller: nav_controller.js for active link highlighting
+  - [ ] 5.8 **[TDD]** Write Stimulus test for modal_controller.js open/close behavior
+  - [ ] 5.9 Generate Stimulus controller: modal_controller.js for modal open/close
+  - [ ] 5.10 Create dashboard view with 3 placeholder metric cards (Tailwind styled)
+  - [ ] 5.11 Style customers index view with table layout using Tailwind
+  - [ ] 5.12 Style appointments index view with calendar-like layout using Tailwind
+  - [ ] 5.13 Create form partials for customer and appointment forms with Tailwind styling
+  - [ ] 5.14 Add Devise views with `rails generate devise:views` and style with Tailwind
+  - [ ] 5.15 Run Stimulus tests to verify JavaScript functionality
+
+- [ ] 6.0 Implement Seed Data and Testing Infrastructure
+  - [ ] 6.1 Install RSpec: `rails generate rspec:install` (Already done in step 1.2)
+  - [ ] 6.2 Configure RSpec rails_helper with FactoryBot and Devise test helpers
+  - [ ] 6.3 Create FactoryBot factories for Business, User, Customer, Appointment, Message, ConsentLog
+  - [ ] 6.4 **[TDD]** Write integration spec for complete tenant isolation across all models
+  - [ ] 6.5 Verify tenant isolation implementation passes all specs
+  - [ ] 6.6 **[TDD]** Write system spec for user sign up flow
+  - [ ] 6.7 **[TDD]** Write system spec for user sign in flow
+  - [ ] 6.8 **[TDD]** Write system spec for dashboard navigation with Turbo Frames
+  - [ ] 6.9 **[TDD]** Write system spec for creating customer
+  - [ ] 6.10 **[TDD]** Write system spec for creating appointment
+  - [ ] 6.11 Implement features to pass all system specs
+  - [ ] 6.12 Create db/seeds.rb script using Faker to generate 5 businesses, users, customers, and appointments
+  - [ ] 6.13 Run seed script with `rails db:seed` to populate test data
+  - [ ] 6.14 Run full RSpec test suite with `bundle exec rspec` and verify 80%+ coverage
+  - [ ] 6.15 Install and verify SimpleCov for code coverage reporting
+  - [ ] 6.16 Configure Sidekiq with config/sidekiq.yml file
+  - [ ] 6.17 Add Sidekiq initializer for Redis connection
+  - [ ] 6.18 **[TDD]** Write test for Sidekiq job queue configuration
+  - [ ] 6.19 Manual QA: Test full application flow (sign up, sign in, navigate dashboard, create customer, create appointment)
+  - [ ] 6.20 Final verification: Run all specs one more time to ensure everything passes
