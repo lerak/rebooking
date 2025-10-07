@@ -1,5 +1,10 @@
-<h1>New Customer</h1>
+<%= turbo_frame_tag "main_content" do %>
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <h1 class="text-3xl font-bold text-gray-dark">New Customer</h1>
+      <%= link_to "Back to Customers", customers_path, data: { turbo_frame: "main_content" }, class: "text-light-blue hover:text-dark-blue" %>
+    </div>
 
-<%= render 'form', customer: @customer %>
-
-<%= link_to 'Back', customers_path %>
+    <%= render 'form', customer: @customer %>
+  </div>
+<% end %>
