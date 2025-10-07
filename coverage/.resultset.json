@@ -1,0 +1,367 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/computer-monica/rebooking/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/helpers/appointments_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/helpers/customers_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/helpers/dashboard_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/helpers/messages_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/helpers/settings/businesses_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/models/appointment.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          65,
+          null,
+          62,
+          2,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/models/business.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/models/consent_log.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/models/customer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/models/message.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          249,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          134,
+          null,
+          null,
+          1,
+          46,
+          46,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/controllers/customers_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          11,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          3,
+          3,
+          null,
+          3,
+          2,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          10,
+          null,
+          null,
+          1,
+          5,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/controllers/appointments_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          9,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          3,
+          null,
+          null,
+          1,
+          4,
+          4,
+          null,
+          4,
+          2,
+          null,
+          2,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          10,
+          null,
+          null,
+          1,
+          6,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/controllers/messages_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/controllers/dashboard_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/controllers/settings/businesses_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          3,
+          2,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          6,
+          null,
+          null,
+          1,
+          3,
+          null,
+          null
+        ]
+      },
+      "/home/computer-monica/rebooking/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/computer-monica/rebooking/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      }
+    },
+    "timestamp": 1759798321
+  }
+}

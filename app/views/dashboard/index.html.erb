@@ -1,0 +1,100 @@
+<%= turbo_frame_tag "main_content" do %>
+<div class="space-y-6">
+  <!-- Page Header -->
+  <div class="flex items-center justify-between">
+    <h1 class="text-3xl font-bold text-gray-dark">Dashboard</h1>
+    <p class="text-gray-medium"><%= Time.current.strftime("%B %d, %Y") %></p>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Total Customers Card -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-medium uppercase tracking-wide">Total Customers</p>
+          <p class="text-3xl font-bold text-gray-dark mt-2">0</p>
+        </div>
+        <div class="bg-light-blue bg-opacity-10 rounded-full p-3">
+          <svg class="w-8 h-8 text-light-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="mt-4">
+        <span class="text-sm text-gray-medium">No customers yet</span>
+      </div>
+    </div>
+
+    <!-- Upcoming Appointments Card -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-medium uppercase tracking-wide">Upcoming Appointments</p>
+          <p class="text-3xl font-bold text-gray-dark mt-2">0</p>
+        </div>
+        <div class="bg-navy bg-opacity-10 rounded-full p-3">
+          <svg class="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="mt-4">
+        <span class="text-sm text-gray-medium">No appointments scheduled</span>
+      </div>
+    </div>
+
+    <!-- Unread Messages Card -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-medium uppercase tracking-wide">Unread Messages</p>
+          <p class="text-3xl font-bold text-gray-dark mt-2">0</p>
+        </div>
+        <div class="bg-green-500 bg-opacity-10 rounded-full p-3">
+          <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="mt-4">
+        <span class="text-sm text-gray-medium">All messages read</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <h2 class="text-xl font-semibold text-gray-dark mb-4">Quick Actions</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <%= link_to new_customer_path,
+          data: { turbo_frame: "main_content" },
+          class: "flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-light transition-colors" do %>
+        <div class="bg-light-blue bg-opacity-10 rounded-full p-2 mr-4">
+          <svg class="w-6 h-6 text-light-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-medium text-gray-dark">Add New Customer</p>
+          <p class="text-sm text-gray-medium">Create a new customer profile</p>
+        </div>
+      <% end %>
+
+      <%= link_to new_appointment_path,
+          data: { turbo_frame: "main_content" },
+          class: "flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-light transition-colors" do %>
+        <div class="bg-navy bg-opacity-10 rounded-full p-2 mr-4">
+          <svg class="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-medium text-gray-dark">Schedule Appointment</p>
+          <p class="text-sm text-gray-medium">Book a new appointment</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -51,7 +51,7 @@
   - [x] 1.4 Configure database.yml to enable UUID extension and set up PostgreSQL
   - [x] 1.5 Create database with `rails db:create`
 
-- [ ] 2.0 Configure Multi-Tenant Architecture with Authentication
+- [x] 2.0 Configure Multi-Tenant Architecture with Authentication
   - [x] 2.1 **[TDD]** Write spec for Business model validations and associations
   - [x] 2.2 Install Devise with `rails generate devise:install`
   - [x] 2.3 Configure Devise initializer (secret key, mailer sender, etc.)
@@ -67,57 +67,57 @@
   - [x] 2.13 Run migrations with `rails db:migrate`
   - [x] 2.14 Run specs to verify all tests pass
 
-- [ ] 3.0 Build Database Schema and Core Models
-  - [ ] 3.1 **[TDD]** Write spec for Customer model validations, associations, and tenant scoping
-  - [ ] 3.2 Generate Customer model: `rails generate model Customer first_name:string last_name:string phone:string email:string business:references`
-  - [ ] 3.3 **[TDD]** Write spec for Appointment model validations, associations, statuses, and tenant scoping
-  - [ ] 3.4 Generate Appointment model: `rails generate model Appointment customer:references start_time:datetime end_time:datetime status:integer business:references`
-  - [ ] 3.5 **[TDD]** Write spec for Message model validations, associations, and tenant scoping
-  - [ ] 3.6 Generate Message model: `rails generate model Message customer:references body:text direction:integer status:integer metadata:jsonb business:references`
-  - [ ] 3.7 **[TDD]** Write spec for ConsentLog model validations and associations
-  - [ ] 3.8 Generate ConsentLog model: `rails generate model ConsentLog customer:references consent_text:text consented_at:datetime`
-  - [ ] 3.9 Update all migrations to use UUID primary keys and add indexes
-  - [ ] 3.10 Add acts_as_tenant to Customer, Appointment, and Message models
-  - [ ] 3.11 Add model validations (presence, uniqueness where needed) to pass tests
-  - [ ] 3.12 Add model associations (has_many, belongs_to) to pass tests
-  - [ ] 3.13 Add enums to User (role), Appointment (status), and Message (direction)
-  - [ ] 3.14 Run migrations with `rails db:migrate`
-  - [ ] 3.15 Run specs to verify all model tests pass
+- [x] 3.0 Build Database Schema and Core Models
+  - [x] 3.1 **[TDD]** Write spec for Customer model validations, associations, and tenant scoping
+  - [x] 3.2 Generate Customer model: `rails generate model Customer first_name:string last_name:string phone:string email:string business:references`
+  - [x] 3.3 **[TDD]** Write spec for Appointment model validations, associations, statuses, and tenant scoping
+  - [x] 3.4 Generate Appointment model: `rails generate model Appointment customer:references start_time:datetime end_time:datetime status:integer business:references`
+  - [x] 3.5 **[TDD]** Write spec for Message model validations, associations, and tenant scoping
+  - [x] 3.6 Generate Message model: `rails generate model Message customer:references body:text direction:integer status:integer metadata:jsonb business:references`
+  - [x] 3.7 **[TDD]** Write spec for ConsentLog model validations and associations
+  - [x] 3.8 Generate ConsentLog model: `rails generate model ConsentLog customer:references consent_text:text consented_at:datetime`
+  - [x] 3.9 Update all migrations to use UUID primary keys and add indexes
+  - [x] 3.10 Add acts_as_tenant to Customer, Appointment, and Message models
+  - [x] 3.11 Add model validations (presence, uniqueness where needed) to pass tests
+  - [x] 3.12 Add model associations (has_many, belongs_to) to pass tests
+  - [x] 3.13 Add enums to User (role), Appointment (status), and Message (direction)
+  - [x] 3.14 Run migrations with `rails db:migrate`
+  - [x] 3.15 Run specs to verify all model tests pass
 
 - [ ] 4.0 Create Controllers and Routes with Turbo Support
-  - [ ] 4.1 **[TDD]** Write request spec for DashboardController requiring authentication
-  - [ ] 4.2 Generate DashboardController with index action
-  - [ ] 4.3 **[TDD]** Write request spec for CustomersController CRUD with tenant scoping
-  - [ ] 4.4 Generate CustomersController with scaffold actions (index, new, create, edit, update, destroy)
-  - [ ] 4.5 **[TDD]** Write request spec for AppointmentsController CRUD with tenant scoping
-  - [ ] 4.6 Generate AppointmentsController with scaffold actions
-  - [ ] 4.7 **[TDD]** Write request spec for MessagesController index and show
-  - [ ] 4.8 Generate MessagesController with index and show actions only
-  - [ ] 4.9 **[TDD]** Write request spec for Settings::BusinessesController edit and update
-  - [ ] 4.10 Generate Settings::BusinessesController with edit and update actions
-  - [ ] 4.11 Add `before_action :authenticate_user!` to ApplicationController
-  - [ ] 4.12 Implement `set_current_tenant` method in ApplicationController
-  - [ ] 4.13 Configure routes.rb with authenticated root, Devise routes, and resource routes
-  - [ ] 4.14 Add Turbo Frame support to route configuration (data attributes in views)
-  - [ ] 4.15 Create basic view files for all controllers with turbo_frame_tag
-  - [ ] 4.16 Run specs to verify all controller tests pass
+  - [x] 4.1 **[TDD]** Write request spec for DashboardController requiring authentication
+  - [x] 4.2 Generate DashboardController with index action
+  - [x] 4.3 **[TDD]** Write request spec for CustomersController CRUD with tenant scoping
+  - [x] 4.4 Generate CustomersController with scaffold actions (index, new, create, edit, update, destroy)
+  - [x] 4.5 **[TDD]** Write request spec for AppointmentsController CRUD with tenant scoping
+  - [x] 4.6 Generate AppointmentsController with scaffold actions
+  - [x] 4.7 **[TDD]** Write request spec for MessagesController index and show
+  - [x] 4.8 Generate MessagesController with index and show actions only
+  - [x] 4.9 **[TDD]** Write request spec for Settings::BusinessesController edit and update
+  - [x] 4.10 Generate Settings::BusinessesController with edit and update actions
+  - [x] 4.11 Add `before_action :authenticate_user!` to ApplicationController
+  - [x] 4.12 Implement `set_current_tenant` method in ApplicationController
+  - [x] 4.13 Configure routes.rb with authenticated root, Devise routes, and resource routes
+  - [x] 4.14 Add Turbo Frame support to route configuration (data attributes in views)
+  - [x] 4.15 Create basic view files for all controllers with turbo_frame_tag
+  - [x] 4.16 Run specs to verify all controller tests pass
 
-- [ ] 5.0 Build Frontend UI with Tailwind and Stimulus
-  - [ ] 5.1 Install Tailwind CSS: `rails tailwindcss:install`
-  - [ ] 5.2 Configure Tailwind config with custom colors (navy #1E3A8A, light blue #60A5FA, etc.)
-  - [ ] 5.3 Create application layout with sidebar navigation structure
-  - [ ] 5.4 Create shared navigation partial (_nav.html.erb) with Turbo Frame links
-  - [ ] 5.5 Add main content turbo_frame to layout with id "main_content"
-  - [ ] 5.6 **[TDD]** Write Stimulus test for nav_controller.js active link behavior
-  - [ ] 5.7 Generate Stimulus controller: nav_controller.js for active link highlighting
-  - [ ] 5.8 **[TDD]** Write Stimulus test for modal_controller.js open/close behavior
-  - [ ] 5.9 Generate Stimulus controller: modal_controller.js for modal open/close
-  - [ ] 5.10 Create dashboard view with 3 placeholder metric cards (Tailwind styled)
-  - [ ] 5.11 Style customers index view with table layout using Tailwind
-  - [ ] 5.12 Style appointments index view with calendar-like layout using Tailwind
-  - [ ] 5.13 Create form partials for customer and appointment forms with Tailwind styling
-  - [ ] 5.14 Add Devise views with `rails generate devise:views` and style with Tailwind
-  - [ ] 5.15 Run Stimulus tests to verify JavaScript functionality
+- [x] 5.0 Build Frontend UI with Tailwind and Stimulus
+  - [x] 5.1 Install Tailwind CSS: `rails tailwindcss:install`
+  - [x] 5.2 Configure Tailwind config with custom colors (navy #1E3A8A, light blue #60A5FA, etc.)
+  - [x] 5.3 Create application layout with sidebar navigation structure
+  - [x] 5.4 Create shared navigation partial (_nav.html.erb) with Turbo Frame links
+  - [x] 5.5 Add main content turbo_frame to layout with id "main_content"
+  - [x] 5.6 **[TDD]** Write Stimulus test for nav_controller.js active link behavior
+  - [x] 5.7 Generate Stimulus controller: nav_controller.js for active link highlighting
+  - [x] 5.8 **[TDD]** Write Stimulus test for modal_controller.js open/close behavior
+  - [x] 5.9 Generate Stimulus controller: modal_controller.js for modal open/close
+  - [x] 5.10 Create dashboard view with 3 placeholder metric cards (Tailwind styled)
+  - [x] 5.11 Style customers index view with table layout using Tailwind
+  - [x] 5.12 Style appointments index view with calendar-like layout using Tailwind
+  - [x] 5.13 Create form partials for customer and appointment forms with Tailwind styling
+  - [x] 5.14 Add Devise views with `rails generate devise:views` and style with Tailwind
+  - [x] 5.15 Run Stimulus tests to verify JavaScript functionality
 
 - [ ] 6.0 Implement Seed Data and Testing Infrastructure
   - [ ] 6.1 Install RSpec: `rails generate rspec:install` (Already done in step 1.2)

@@ -1,0 +1,9 @@
+<h1>Appointment Details</h1>
+
+<p><strong>Customer:</strong> <%= @appointment.customer.first_name %> <%= @appointment.customer.last_name %></p>
+<p><strong>Start Time:</strong> <%= @appointment.start_time.strftime("%b %d, %Y %I:%M %p") %></p>
+<p><strong>End Time:</strong> <%= @appointment.end_time.strftime("%b %d, %Y %I:%M %p") %></p>
+<p><strong>Status:</strong> <%= @appointment.status.titleize %></p>
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %>
+<%= link_to 'Back', appointments_path %>

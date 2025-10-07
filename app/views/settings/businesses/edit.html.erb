@@ -1,0 +1,30 @@
+<%= turbo_frame_tag "main_content" do %>
+<h1>Business Settings</h1>
+
+<%= form_with(model: @business, url: settings_business_path, method: :patch) do |form| %>
+  <% if @business.errors.any? %>
+    <div>
+      <h2><%= pluralize(@business.errors.count, "error") %> prohibited this business from being saved:</h2>
+      <ul>
+        <% @business.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :timezone %>
+    <%= form.select :timezone, ActiveSupport::TimeZone.all.map { |tz| [tz.name, tz.name] } %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Business Settings" %>
+  </div>
+<% end %>
+<% end %>

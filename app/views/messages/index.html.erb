@@ -1,0 +1,28 @@
+<%= turbo_frame_tag "main_content" do %>
+<h1>Messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Direction</th>
+      <th>Status</th>
+      <th>Body</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.customer.first_name %> <%= message.customer.last_name %></td>
+        <td><%= message.direction.titleize %></td>
+        <td><%= message.status.titleize %></td>
+        <td><%= truncate(message.body, length: 50) %></td>
+        <td>
+          <%= link_to 'Show', message %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

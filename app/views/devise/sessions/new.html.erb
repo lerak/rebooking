@@ -1,0 +1,42 @@
+<div class="bg-white rounded-lg shadow-lg p-8">
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold text-navy">Rebooking</h1>
+    <p class="text-gray-medium mt-2">Sign in to your account</p>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+    <div>
+      <%= f.label :email, class: "block text-sm font-medium text-gray-dark mb-2" %>
+      <%= f.email_field :email,
+          autofocus: true,
+          autocomplete: "email",
+          class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-light-blue focus:border-light-blue transition-colors",
+          placeholder: "Enter your email" %>
+    </div>
+
+    <div>
+      <%= f.label :password, class: "block text-sm font-medium text-gray-dark mb-2" %>
+      <%= f.password_field :password,
+          autocomplete: "current-password",
+          class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-light-blue focus:border-light-blue transition-colors",
+          placeholder: "Enter your password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="flex items-center">
+        <%= f.check_box :remember_me,
+            class: "h-4 w-4 text-navy focus:ring-light-blue border-gray-300 rounded" %>
+        <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-dark" %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.submit "Log in",
+          class: "w-full px-6 py-3 bg-navy text-white rounded-lg hover:bg-dark-blue transition-colors font-medium" %>
+    </div>
+  <% end %>
+
+  <div class="mt-6">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
