@@ -126,7 +126,7 @@ Based on PRD: `0002-prd-messaging-mvp.md`
   - [x] 3.14 Add Business settings UI to configure reminder_hours_before in settings/businesses/edit view
   - [x] 3.15 Test Business settings update for reminder configuration in settings/businesses_spec.rb
 
-- [ ] 4.0 Develop Twilio Webhook Handler for Inbound Messages
+- [x] 4.0 Develop Twilio Webhook Handler for Inbound Messages
   - [x] 4.1 Create TwilioWebhooksController with inbound and status_callback actions
   - [x] 4.2 Add webhook routes to config/routes.rb (POST /webhooks/twilio/inbound, POST /webhooks/twilio/status)
   - [x] 4.3 Implement Twilio signature verification in TwilioWebhooksController (skip CSRF for webhooks)
