@@ -57,7 +57,7 @@ RSpec.describe "Appointments", type: :request do
   describe "POST /appointments" do
     context "when user is authenticated" do
       before do
-        login_as(user1, scope: :user)
+        sign_in user1
       end
 
       it "creates a new appointment for current tenant" do
@@ -65,7 +65,7 @@ RSpec.describe "Appointments", type: :request do
           post appointments_path, params: { appointment: { customer_id: customer1.id, start_time: 3.days.from_now, end_time: 3.days.from_now + 1.hour, status: :scheduled } }
         }.to change(Appointment, :count).by(1)
 
-        new_appointment = Appointment.last
+        new_appointment = ActsAsTenant.without_tenant { Appointment.last }
         expect(new_appointment.business).to eq(business1)
       end
     end
