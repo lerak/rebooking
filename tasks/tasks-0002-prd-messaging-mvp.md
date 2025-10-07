@@ -127,22 +127,22 @@ Based on PRD: `0002-prd-messaging-mvp.md`
   - [x] 3.15 Test Business settings update for reminder configuration in settings/businesses_spec.rb
 
 - [ ] 4.0 Develop Twilio Webhook Handler for Inbound Messages
-  - [ ] 4.1 Create TwilioWebhooksController with inbound and status_callback actions
-  - [ ] 4.2 Add webhook routes to config/routes.rb (POST /webhooks/twilio/inbound, POST /webhooks/twilio/status)
-  - [ ] 4.3 Implement Twilio signature verification in TwilioWebhooksController (skip CSRF for webhooks)
-  - [ ] 4.4 Implement inbound action to parse Twilio webhook params (From, Body, MessageSid)
-  - [ ] 4.5 Find or create customer by phone number in inbound action
-  - [ ] 4.6 Create Message record for inbound SMS with direction=inbound, status=received
-  - [ ] 4.7 Check for STOP/HELP keywords using MessageParser and process accordingly
-  - [ ] 4.8 Send auto-reply for HELP keyword with business contact info
-  - [ ] 4.9 Implement status_callback action to update message delivery status (twilio_sid lookup)
-  - [ ] 4.10 Update message status, delivered_at, and error_message based on callback params
-  - [ ] 4.11 Broadcast Turbo Stream for new inbound messages to update inbox in real-time
-  - [ ] 4.12 Write RSpec request tests for TwilioWebhooksController inbound action (valid/invalid signature, message creation)
-  - [ ] 4.13 Write RSpec request tests for status_callback action (delivery status updates, error handling)
-  - [ ] 4.14 Test STOP keyword processing (opt-out customer, no further messages sent)
-  - [ ] 4.15 Test HELP keyword processing (auto-reply with correct content)
-  - [ ] 4.16 Configure Twilio webhook URLs in Twilio console (point to /webhooks/twilio/inbound and /webhooks/twilio/status)
+  - [x] 4.1 Create TwilioWebhooksController with inbound and status_callback actions
+  - [x] 4.2 Add webhook routes to config/routes.rb (POST /webhooks/twilio/inbound, POST /webhooks/twilio/status)
+  - [x] 4.3 Implement Twilio signature verification in TwilioWebhooksController (skip CSRF for webhooks)
+  - [x] 4.4 Implement inbound action to parse Twilio webhook params (From, Body, MessageSid)
+  - [x] 4.5 Find or create customer by phone number in inbound action
+  - [x] 4.6 Create Message record for inbound SMS with direction=inbound, status=received
+  - [x] 4.7 Check for STOP/HELP keywords using MessageParser and process accordingly
+  - [x] 4.8 Send auto-reply for HELP keyword with business contact info
+  - [x] 4.9 Implement status_callback action to update message delivery status (twilio_sid lookup)
+  - [x] 4.10 Update message status, delivered_at, and error_message based on callback params
+  - [x] 4.11 Broadcast Turbo Stream for new inbound messages to update inbox in real-time
+  - [x] 4.12 Write RSpec request tests for TwilioWebhooksController inbound action (valid/invalid signature, message creation)
+  - [x] 4.13 Write RSpec request tests for status_callback action (delivery status updates, error handling)
+  - [x] 4.14 Test STOP keyword processing (opt-out customer, no further messages sent)
+  - [x] 4.15 Test HELP keyword processing (auto-reply with correct content)
+  - [x] 4.16 Configure Twilio webhook URLs in Twilio console (point to /webhooks/twilio/inbound and /webhooks/twilio/status)
 
 - [ ] 5.0 Create Business Inbox UI with Real-time Updates
   - [ ] 5.1 Update MessagesController with inbox action to load conversations grouped by customer

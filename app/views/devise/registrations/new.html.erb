@@ -8,16 +8,6 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div>
-      <%= f.label :business_id, "Business", class: "block text-sm font-medium text-gray-dark mb-2" %>
-      <%= f.collection_select :business_id,
-          Business.all,
-          :id,
-          :name,
-          { prompt: "Select your business" },
-          class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-light-blue focus:border-light-blue transition-colors" %>
-    </div>
-
-    <div>
       <%= f.label :email, class: "block text-sm font-medium text-gray-dark mb-2" %>
       <%= f.email_field :email,
           autofocus: true,

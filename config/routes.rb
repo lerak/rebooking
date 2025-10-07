@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     resource :business, only: [:edit, :update]
   end
 
+  # Twilio webhooks
+  post "webhooks/twilio/inbound", to: "twilio_webhooks#inbound"
+  post "webhooks/twilio/status", to: "twilio_webhooks#status_callback"
+
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
 end

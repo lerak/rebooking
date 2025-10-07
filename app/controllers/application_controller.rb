@@ -4,16 +4,17 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
   before_action :set_current_tenant
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :redirect_if_no_business
 
   private
 
   def set_current_tenant
-    ActsAsTenant.current_tenant = current_user&.business
+    ActsAsTenant.current_tenant = current_user&.business if current_user&.business.present?
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:business_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:business_id])
+  def redirect_if_no_business
+    if user_signed_in? && current_user.business.blank? && !devise_controller? && controller_name != "businesses"
+      redirect_to edit_settings_business_path, alert: "Please complete your business profile to continue."
+    end
   end
 end

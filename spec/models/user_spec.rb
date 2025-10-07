@@ -4,8 +4,13 @@ RSpec.describe User, type: :model do
   let(:business) { Business.create!(name: 'Test Business', timezone: 'America/New_York') }
 
   describe 'validations' do
-    it 'is valid with valid attributes' do
+    it 'is valid with valid attributes and a business' do
       user = User.new(email: 'test@example.com', password: 'password123', business: business)
+      expect(user).to be_valid
+    end
+
+    it 'is valid without a business (for signup flow)' do
+      user = User.new(email: 'test@example.com', password: 'password123', business: nil)
       expect(user).to be_valid
     end
 
@@ -21,29 +26,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include("can't be blank")
     end
 
-    it 'is invalid without a business' do
-      user = User.new(email: 'test@example.com', password: 'password123')
-      expect(user).not_to be_valid
-      expect(user.errors[:business]).to include("must exist")
-    end
-
-    it 'enforces unique email per business' do
+    it 'enforces unique email globally' do
       User.create!(email: 'test@example.com', password: 'password123', business: business, role: :admin)
-      duplicate_user = User.new(email: 'test@example.com', password: 'password123', business: business, role: :staff)
+      duplicate_user = User.new(email: 'test@example.com', password: 'password123', business: nil, role: :staff)
 
       expect(duplicate_user).not_to be_valid
       expect(duplicate_user.errors[:email]).to include("has already been taken")
-    end
-
-    it 'allows same email across different businesses' do
-      business2 = Business.create!(name: 'Another Business', timezone: 'America/Los_Angeles')
-
-      ActsAsTenant.without_tenant do
-        user1 = User.create!(email: 'test@example.com', password: 'password123', business: business, role: :admin)
-        user2 = User.new(email: 'test@example.com', password: 'password123', business: business2, role: :admin)
-
-        expect(user2).to be_valid
-      end
     end
   end
 
@@ -51,6 +39,11 @@ RSpec.describe User, type: :model do
     it 'belongs to a business' do
       association = User.reflect_on_association(:business)
       expect(association.macro).to eq(:belongs_to)
+    end
+
+    it 'allows optional business' do
+      association = User.reflect_on_association(:business)
+      expect(association.options[:optional]).to be true
     end
   end
 
@@ -89,7 +82,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'has custom validation instead of validatable' do
-      # We use custom validation scoped by business instead of :validatable
+      # We use custom validation instead of :validatable
       expect(User.devise_modules).not_to include(:validatable)
     end
   end
