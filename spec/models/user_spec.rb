@@ -5,12 +5,12 @@ RSpec.describe User, type: :model do
 
   describe 'validations' do
     it 'is valid with valid attributes and a business' do
-      user = User.new(email: 'test@example.com', password: 'password123', business: business)
+      user = User.new(email: 'valid@example.com', password: 'password123', business: business)
       expect(user).to be_valid
     end
 
     it 'is valid without a business (for signup flow)' do
-      user = User.new(email: 'test@example.com', password: 'password123', business: nil)
+      user = User.new(email: 'signup@example.com', password: 'password123', business: nil)
       expect(user).to be_valid
     end
 
@@ -27,8 +27,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'enforces unique email globally' do
-      User.create!(email: 'test@example.com', password: 'password123', business: business, role: :admin)
-      duplicate_user = User.new(email: 'test@example.com', password: 'password123', business: nil, role: :staff)
+      User.create!(email: 'unique@example.com', password: 'password123', business: business, role: :admin)
+      duplicate_user = User.new(email: 'unique@example.com', password: 'password123', business: nil, role: :staff)
 
       expect(duplicate_user).not_to be_valid
       expect(duplicate_user.errors[:email]).to include("has already been taken")

@@ -43,8 +43,8 @@ RSpec.describe Business, type: :model do
     # end
 
     it 'destroys dependent users when destroyed' do
-      business = Business.create!(name: 'Test Business', timezone: 'America/New_York')
-      user = business.users.create!(email: 'test@example.com', password: 'password123', role: :admin)
+      business = Business.create!(name: 'Test Business Destroy', timezone: 'America/New_York')
+      user = business.users.create!(email: 'destroytest@example.com', password: 'password123', role: :admin)
 
       expect { business.destroy }.to change { User.count }.by(-1)
     end

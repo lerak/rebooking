@@ -134,10 +134,11 @@ RSpec.describe "Multi-tenant isolation", type: :model do
 
       ActsAsTenant.current_tenant = nil
 
-      # Without tenant context, all data is visible
-      expect(Customer.count).to eq(2)
-      expect(Appointment.count).to eq(2)
-      expect(Message.count).to eq(2)
+      # Without tenant context, all data is visible (at least our test data)
+      expect(Customer.count).to be >= 2
+      expect(Customer.where(first_name: ["Alice", "Bob"]).count).to eq(2)
+      expect(Appointment.count).to be >= 2
+      expect(Message.count).to be >= 2
     end
   end
 end

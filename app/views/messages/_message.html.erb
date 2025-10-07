@@ -14,7 +14,7 @@
 
       <% if message.direction == 'outbound' %>
         <span class="text-xs text-gray-500">
-          <%= render partial: 'message_status_indicator', locals: { status: message.status } %>
+          <%= render partial: 'messages/message_status_indicator', locals: { status: message.status } %>
         </span>
       <% end %>
     </div>
