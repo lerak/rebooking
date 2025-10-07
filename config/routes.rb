@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # Resource routes
   resources :customers
   resources :appointments
-  resources :messages, only: [:index, :show]
+  resources :messages, only: [:index, :show, :create]
 
   # Settings namespace
   namespace :settings do

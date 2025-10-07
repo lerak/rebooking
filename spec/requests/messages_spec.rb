@@ -33,6 +33,22 @@ RSpec.describe "Messages", type: :request do
         expect(response.body).to include("Hello from customer 1")
         expect(response.body).not_to include("Hello from customer 2")
       end
+
+      it "loads conversations grouped by customer" do
+        # Create multiple messages for same customer
+        Message.create!(customer: customer1, body: "Second message", direction: :inbound, status: :received, business: business1)
+
+        get messages_path
+        expect(response.body).to include("Second message")
+        expect(response.body).to include("John Doe")
+      end
+
+      it "displays customer information in conversations" do
+        get messages_path
+        expect(response.body).to include(customer1.first_name)
+        expect(response.body).to include(customer1.last_name)
+        expect(response.body).to include(customer1.phone)
+      end
     end
   end
 
@@ -49,6 +65,48 @@ RSpec.describe "Messages", type: :request do
 
       it "does not allow access to message from different tenant" do
         get message_path(message2)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
+  describe "POST /messages" do
+    context "when user is not authenticated" do
+      it "redirects to sign in page" do
+        post messages_path, params: { customer_id: customer1.id, message: { body: "Test message" } }
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "when user is authenticated" do
+      before do
+        sign_in user1
+      end
+
+      it "queues SendMessageJob with correct parameters" do
+        expect(SendMessageJob).to receive(:perform_later).with(customer1.id, "Test message", business1.id)
+
+        post messages_path, params: { customer_id: customer1.id, message: { body: "Test message" } }
+      end
+
+      it "redirects to messages path on HTML request" do
+        allow(SendMessageJob).to receive(:perform_later)
+
+        post messages_path, params: { customer_id: customer1.id, message: { body: "Test message" } }
+        expect(response).to redirect_to(messages_path)
+        expect(flash[:notice]).to eq('Message sent successfully.')
+      end
+
+      it "renders turbo stream response when requested" do
+        allow(SendMessageJob).to receive(:perform_later)
+
+        post messages_path, params: { customer_id: customer1.id, message: { body: "Test message" } }, headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response).to have_http_status(:success)
+        expect(response.content_type).to include("turbo-stream")
+      end
+
+      it "prevents sending message to customer from different tenant" do
+        post messages_path, params: { customer_id: customer2.id, message: { body: "Test message" } }
         expect(response).to have_http_status(:not_found)
       end
     end

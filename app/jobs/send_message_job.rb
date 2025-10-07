@@ -23,7 +23,7 @@ class SendMessageJob < ApplicationJob
     )
 
     # Create message record
-    Message.create!(
+    created_message = Message.create!(
       customer: customer,
       business: business,
       body: message_body,
@@ -31,17 +31,33 @@ class SendMessageJob < ApplicationJob
       status: :sent,
       twilio_sid: message.sid
     )
+
+    # Broadcast to inbox for real-time updates
+    created_message.broadcast_append_to(
+      "business_#{business.id}_messages",
+      target: "messages",
+      partial: "messages/message",
+      locals: { message: created_message }
+    )
   rescue TwilioService::TwilioError => e
     Rails.logger.error "Failed to send SMS to customer #{customer_id}: #{e.message}"
 
     # Create failed message record
-    Message.create!(
+    failed_message = Message.create!(
       customer: customer,
       business: business,
       body: message_body,
       direction: :outbound,
       status: :failed,
       error_message: e.message
+    )
+
+    # Broadcast failed message to inbox
+    failed_message.broadcast_append_to(
+      "business_#{business.id}_messages",
+      target: "messages",
+      partial: "messages/message",
+      locals: { message: failed_message }
     )
   end
 end

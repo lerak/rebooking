@@ -1,0 +1,17 @@
+<%= form_with(url: messages_path, method: :post, data: { controller: "message-form", action: "turbo:submit-end->message-form#reset" }, class: "flex items-end space-x-2") do |form| %>
+  <%= form.hidden_field :customer_id, value: customer.id %>
+
+  <div class="flex-1">
+    <%= form.text_area :message, :body,
+        rows: 2,
+        placeholder: "Type a message...",
+        class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none",
+        data: { message_form_target: "input", action: "keydown->message-form#handleKeydown" } %>
+  </div>
+
+  <div>
+    <%= form.submit "Send",
+        class: "px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium cursor-pointer",
+        data: { message_form_target: "submit" } %>
+  </div>
+<% end %>

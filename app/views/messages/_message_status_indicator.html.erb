@@ -1,0 +1,35 @@
+<% case status %>
+<% when 'queued' %>
+  <span class="inline-flex items-center" title="Queued" role="status" aria-label="Message queued for sending">
+    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+    </svg>
+  </span>
+<% when 'sent' %>
+  <span class="inline-flex items-center" title="Sent" role="status" aria-label="Message sent">
+    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+    </svg>
+  </span>
+<% when 'delivered' %>
+  <span class="inline-flex items-center text-green-600" title="Delivered" role="status" aria-label="Message delivered">
+    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+    </svg>
+    <svg class="w-3 h-3 -ml-1.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+    </svg>
+  </span>
+<% when 'failed', 'undelivered' %>
+  <span class="inline-flex items-center text-red-600" title="Failed" role="alert" aria-label="Message failed to send">
+    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+    </svg>
+  </span>
+<% else %>
+  <span class="inline-flex items-center text-gray-400" title="<%= status %>" role="status" aria-label="Message status: <%= status %>">
+    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+    </svg>
+  </span>
+<% end %>

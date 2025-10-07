@@ -1,0 +1,22 @@
+<div class="mb-4 <%= message.direction == 'outbound' ? 'flex justify-end' : 'flex justify-start' %>"
+     data-direction="<%= message.direction %>"
+     role="article"
+     aria-label="<%= message.direction == 'outbound' ? 'Outbound' : 'Inbound' %> message">
+  <div class="max-w-xs lg:max-w-md xl:max-w-lg">
+    <div class="<%= message.direction == 'outbound' ? 'bg-blue-500 text-white' : 'bg-white border border-gray-300' %> rounded-lg px-4 py-2 shadow">
+      <p class="text-sm break-words" data-message-body="true"><%= message.body %></p>
+    </div>
+
+    <div class="mt-1 flex items-center <%= message.direction == 'outbound' ? 'justify-end' : 'justify-start' %> space-x-2">
+      <span class="text-xs text-gray-500" aria-label="Sent <%= format_message_timestamp(message.created_at) %>">
+        <%= format_message_timestamp(message.created_at) %>
+      </span>
+
+      <% if message.direction == 'outbound' %>
+        <span class="text-xs text-gray-500">
+          <%= render partial: 'message_status_indicator', locals: { status: message.status } %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>

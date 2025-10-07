@@ -145,28 +145,30 @@ Based on PRD: `0002-prd-messaging-mvp.md`
   - [x] 4.16 Configure Twilio webhook URLs in Twilio console (point to /webhooks/twilio/inbound and /webhooks/twilio/status)
 
 - [ ] 5.0 Create Business Inbox UI with Real-time Updates
-  - [ ] 5.1 Update MessagesController with inbox action to load conversations grouped by customer
-  - [ ] 5.2 Add create action to MessagesController for sending manual replies
-  - [ ] 5.3 Update routes to add POST /messages (create) and keep GET /messages (inbox)
-  - [ ] 5.4 Create messages/index.html.erb with two-column layout (conversation list left, message thread right)
-  - [ ] 5.5 Create _conversation.html.erb partial to display customer info, last message preview, timestamp
-  - [ ] 5.6 Create _message.html.erb partial with message bubble, status indicator, timestamp
-  - [ ] 5.7 Add message status indicators (queued=clock, sent=checkmark, delivered=double-check, failed=exclamation)
-  - [ ] 5.8 Create migration to add read_at timestamp to messages for unread indicators
-  - [ ] 5.9 Add unread indicator (bold text or badge) for conversations with unread messages
-  - [ ] 5.10 Implement message form in inbox to send manual replies (Turbo Frame)
-  - [ ] 5.11 Create Stimulus inbox_controller.js to handle conversation selection and scroll behavior
-  - [ ] 5.12 Create Stimulus message_form_controller.js to handle message submission
-  - [ ] 5.13 Implement Turbo Stream broadcast on message creation to update all connected inboxes
-  - [ ] 5.14 Add browser notification support in inbox_controller.js for new inbound messages
-  - [ ] 5.15 Create messages/inbox.turbo_stream.erb for real-time message updates
-  - [ ] 5.16 Add conversation filtering by customer/date/status (optional filter form)
-  - [ ] 5.17 Format timestamps as "Today at 2:30 PM", "Yesterday at 1:15 PM", "Jan 5 at 3:00 PM" (helper method)
-  - [ ] 5.18 Write RSpec request tests for MessagesController inbox action (load conversations, authorization)
-  - [ ] 5.19 Write RSpec request tests for MessagesController create action (send message, broadcast stream)
-  - [ ] 5.20 Write system spec for inbox UI (view conversations, send message, real-time updates)
-  - [ ] 5.21 Add ARIA labels for accessibility (screen reader support for message status)
-  - [ ] 5.22 Test keyboard navigation in system spec (tab through conversations, send with Enter)
+  - [x] 5.1 Update MessagesController with inbox action to load conversations grouped by customer
+  - [x] 5.2 Add create action to MessagesController for sending manual replies
+  - [x] 5.3 Update routes to add POST /messages (create) and keep GET /messages (inbox)
+  - [x] 5.4 Create messages/index.html.erb with two-column layout (conversation list left, message thread right)
+  - [x] 5.5 Create _conversation.html.erb partial to display customer info, last message preview, timestamp
+  - [x] 5.6 Create _message.html.erb partial with message bubble, status indicator, timestamp
+  - [x] 5.7 Add message status indicators (queued=clock, sent=checkmark, delivered=double-check, failed=exclamation)
+  - [x] 5.8 Create migration to add read_at timestamp to messages for unread indicators
+  - [x] 5.9 Add unread indicator (bold text or badge) for conversations with unread messages
+  - [x] 5.10 Implement message form in inbox to send manual replies (Turbo Frame)
+  - [x] 5.11 Create Stimulus inbox_controller.js to handle conversation selection and scroll behavior
+  - [x] 5.12 Create Stimulus message_form_controller.js to handle message submission
+  - [x] 5.13 Implement Turbo Stream broadcast on message creation to update all connected inboxes
+  - [x] 5.14 Add browser notification support in inbox_controller.js for new inbound messages
+  - [x] 5.15 Create messages/inbox.turbo_stream.erb for real-time message updates
+  - [x] 5.16 Add conversation filtering by customer/date/status (optional filter form)
+  - [x] 5.17 Format timestamps as "Today at 2:30 PM", "Yesterday at 1:15 PM", "Jan 5 at 3:00 PM" (helper method)
+  - [x] 5.18 Write RSpec request tests for MessagesController inbox action (load conversations, authorization)
+  - [x] 5.19 Write RSpec request tests for MessagesController create action (send message, broadcast stream)
+  - [x] 5.20 Write system spec for inbox UI (view conversations, send message, real-time updates)
+  - [x] 5.21 Add ARIA labels for accessibility (screen reader support for message status)
+  - [x] 5.22 Test keyboard navigation in system spec (tab through conversations, send with Enter)
+
+- [x] 5.0 Create Business Inbox UI with Real-time Updates
 
 - [ ] 6.0 Implement Multi-Phone Number Management
   - [ ] 6.1 Create TwilioPhoneNumber model with business_id, phone_number, status (pending, approved, active), location

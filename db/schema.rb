@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_031316) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_035111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -81,6 +81,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_031316) do
     t.string "twilio_sid"
     t.text "error_message"
     t.datetime "delivered_at"
+    t.datetime "read_at"
     t.index ["business_id", "created_at"], name: "index_messages_on_business_id_and_created_at"
     t.index ["business_id"], name: "index_messages_on_business_id"
     t.index ["customer_id"], name: "index_messages_on_customer_id"

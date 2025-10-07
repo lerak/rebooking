@@ -1,0 +1,34 @@
+<div class="border-b border-gray-200 p-4 hover:bg-gray-100 cursor-pointer"
+     data-customer-id="<%= customer.id %>"
+     role="button"
+     tabindex="0"
+     aria-label="Conversation with <%= customer.first_name %> <%= customer.last_name %>">
+  <div class="flex justify-between items-start mb-1">
+    <div class="font-semibold text-gray-900">
+      <%= customer.first_name %> <%= customer.last_name %>
+    </div>
+    <div class="text-xs text-gray-500" aria-label="Last message <%= time_ago_in_words(messages.last.created_at) %> ago">
+      <%= time_ago_in_words(messages.last.created_at) %> ago
+    </div>
+  </div>
+
+  <div class="text-sm text-gray-600 mb-1" aria-label="Phone number <%= customer.phone %>">
+    <%= customer.phone %>
+  </div>
+
+  <div class="text-sm text-gray-700 truncate">
+    <% last_message = messages.last %>
+    <span class="<%= 'font-semibold' if last_message.direction == 'inbound' %>">
+      <%= last_message.direction == 'inbound' ? '' : 'You: ' %>
+      <%= truncate(last_message.body, length: 50) %>
+    </span>
+  </div>
+
+  <% if messages.any? { |m| m.direction == 'inbound' && m.read_at.nil? } %>
+    <div class="mt-2">
+      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800" role="status" aria-label="Unread messages">
+        Unread
+      </span>
+    </div>
+  <% end %>
+</div>
