@@ -119,24 +119,24 @@
   - [x] 5.14 Add Devise views with `rails generate devise:views` and style with Tailwind
   - [x] 5.15 Run Stimulus tests to verify JavaScript functionality
 
-- [ ] 6.0 Implement Seed Data and Testing Infrastructure
-  - [ ] 6.1 Install RSpec: `rails generate rspec:install` (Already done in step 1.2)
-  - [ ] 6.2 Configure RSpec rails_helper with FactoryBot and Devise test helpers
-  - [ ] 6.3 Create FactoryBot factories for Business, User, Customer, Appointment, Message, ConsentLog
-  - [ ] 6.4 **[TDD]** Write integration spec for complete tenant isolation across all models
-  - [ ] 6.5 Verify tenant isolation implementation passes all specs
-  - [ ] 6.6 **[TDD]** Write system spec for user sign up flow
-  - [ ] 6.7 **[TDD]** Write system spec for user sign in flow
-  - [ ] 6.8 **[TDD]** Write system spec for dashboard navigation with Turbo Frames
-  - [ ] 6.9 **[TDD]** Write system spec for creating customer
-  - [ ] 6.10 **[TDD]** Write system spec for creating appointment
-  - [ ] 6.11 Implement features to pass all system specs
-  - [ ] 6.12 Create db/seeds.rb script using Faker to generate 5 businesses, users, customers, and appointments
-  - [ ] 6.13 Run seed script with `rails db:seed` to populate test data
-  - [ ] 6.14 Run full RSpec test suite with `bundle exec rspec` and verify 80%+ coverage
-  - [ ] 6.15 Install and verify SimpleCov for code coverage reporting
-  - [ ] 6.16 Configure Sidekiq with config/sidekiq.yml file
-  - [ ] 6.17 Add Sidekiq initializer for Redis connection
-  - [ ] 6.18 **[TDD]** Write test for Sidekiq job queue configuration
-  - [ ] 6.19 Manual QA: Test full application flow (sign up, sign in, navigate dashboard, create customer, create appointment)
-  - [ ] 6.20 Final verification: Run all specs one more time to ensure everything passes
+- [x] 6.0 Implement Seed Data and Testing Infrastructure
+  - [x] 6.1 Install RSpec: `rails generate rspec:install` (Already done in step 1.2)
+  - [x] 6.2 Configure RSpec rails_helper with FactoryBot and Devise test helpers
+  - [x] 6.3 Create FactoryBot factories for Business, User, Customer, Appointment, Message, ConsentLog
+  - [x] 6.4 **[TDD]** Write integration spec for complete tenant isolation across all models
+  - [x] 6.5 Verify tenant isolation implementation passes all specs
+  - [x] 6.6 **[TDD]** Write system spec for user sign up flow
+  - [x] 6.7 **[TDD]** Write system spec for user sign in flow
+  - [x] 6.8 **[TDD]** Write system spec for dashboard navigation with Turbo Frames
+  - [x] 6.9 **[TDD]** Write system spec for creating customer
+  - [x] 6.10 **[TDD]** Write system spec for creating appointment
+  - [x] 6.11 Implement features to pass all system specs
+  - [x] 6.12 Create db/seeds.rb script using Faker to generate 5 businesses, users, customers, and appointments
+  - [x] 6.13 Run seed script with `rails db:seed` to populate test data
+  - [x] 6.14 Run full RSpec test suite with `bundle exec rspec` and verify 80%+ coverage
+  - [x] 6.15 Install and verify SimpleCov for code coverage reporting
+  - [x] 6.16 Configure Sidekiq with config/sidekiq.yml file
+  - [x] 6.17 Add Sidekiq initializer for Redis connection
+  - [x] 6.18 **[TDD]** Write test for Sidekiq job queue configuration
+  - [x] 6.19 Manual QA: Test full application flow (sign up, sign in, navigate dashboard, create customer, create appointment)
+  - [x] 6.20 Final verification: Run all specs one more time to ensure everything passes
