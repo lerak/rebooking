@@ -56,4 +56,62 @@ RSpec.describe ConsentLog, type: :model do
       expect(association.macro).to eq(:belongs_to)
     end
   end
+
+  describe 'event_type enum' do
+    it 'has opted_in as default event_type' do
+      consent_log = ConsentLog.new(
+        customer: customer,
+        consent_text: 'Customer consented',
+        consented_at: Time.current
+      )
+      expect(consent_log.event_type).to eq('opted_in')
+    end
+
+    it 'can be set to opted_in' do
+      consent_log = ConsentLog.create!(
+        customer: customer,
+        consent_text: 'Customer opted in',
+        consented_at: Time.current,
+        event_type: :opted_in
+      )
+      expect(consent_log.opted_in?).to be true
+      expect(consent_log.opted_out?).to be false
+    end
+
+    it 'can be set to opted_out' do
+      consent_log = ConsentLog.create!(
+        customer: customer,
+        consent_text: 'Customer opted out',
+        consented_at: Time.current,
+        event_type: :opted_out
+      )
+      expect(consent_log.opted_out?).to be true
+      expect(consent_log.opted_in?).to be false
+    end
+
+    it 'validates presence of event_type' do
+      consent_log = ConsentLog.new(
+        customer: customer,
+        consent_text: 'Test',
+        consented_at: Time.current
+      )
+      consent_log.event_type = nil
+      expect(consent_log).not_to be_valid
+      expect(consent_log.errors[:event_type]).to include("can't be blank")
+    end
+  end
+
+  describe 'metadata' do
+    it 'can store additional metadata as jsonb' do
+      consent_log = ConsentLog.create!(
+        customer: customer,
+        consent_text: 'Customer consented',
+        consented_at: Time.current,
+        event_type: :opted_in,
+        metadata: { source: 'web', ip_address: '192.168.1.1' }
+      )
+
+      expect(consent_log.metadata).to eq({ 'source' => 'web', 'ip_address' => '192.168.1.1' })
+    end
+  end
 end

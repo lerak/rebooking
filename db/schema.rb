@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_06_171234) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_025158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -43,8 +43,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_06_171234) do
     t.datetime "consented_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "event_type", default: 0, null: false
+    t.jsonb "metadata", default: {}
     t.index ["consented_at"], name: "index_consent_logs_on_consented_at"
     t.index ["customer_id"], name: "index_consent_logs_on_customer_id"
+    t.index ["event_type"], name: "index_consent_logs_on_event_type"
   end
 
   create_table "customers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -55,9 +58,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_06_171234) do
     t.uuid "business_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sms_consent_status", default: 1, null: false
+    t.datetime "opted_out_at"
     t.index ["business_id", "phone"], name: "index_customers_on_business_id_and_phone", unique: true
     t.index ["business_id"], name: "index_customers_on_business_id"
     t.index ["email"], name: "index_customers_on_email"
+    t.index ["opted_out_at"], name: "index_customers_on_opted_out_at"
+    t.index ["sms_consent_status"], name: "index_customers_on_sms_consent_status"
   end
 
   create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -82,7 +89,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_06_171234) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.uuid "business_id", null: false
+    t.uuid "business_id"
     t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
