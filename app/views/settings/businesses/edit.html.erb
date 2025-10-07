@@ -1,30 +1,47 @@
 <%= turbo_frame_tag "main_content" do %>
-<h1>Business Settings</h1>
-
-<%= form_with(model: @business, url: settings_business_path, method: :patch) do |form| %>
-  <% if @business.errors.any? %>
-    <div>
-      <h2><%= pluralize(@business.errors.count, "error") %> prohibited this business from being saved:</h2>
-      <ul>
-        <% @business.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <h1 class="text-3xl font-bold text-gray-dark"><%= @business.new_record? ? "Complete Your Business Profile" : "Business Settings" %></h1>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <%= form_with(model: @business, url: settings_business_path, method: :patch, class: "space-y-6") do |form| %>
+      <% if @business.errors.any? %>
+        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+          <h2 class="text-red-800 font-semibold mb-2"><%= pluralize(@business.errors.count, "error") %> prohibited this business from being saved:</h2>
+          <ul class="list-disc list-inside text-red-700">
+            <% @business.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= form.label :timezone %>
-    <%= form.select :timezone, ActiveSupport::TimeZone.all.map { |tz| [tz.name, tz.name] } %>
-  </div>
+      <div>
+        <%= form.label :name, "Business Name", class: "block text-sm font-medium text-gray-dark mb-2" %>
+        <%= form.text_field :name, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-light-blue focus:border-light-blue transition-colors", placeholder: "Enter your business name" %>
+      </div>
 
-  <div>
-    <%= form.submit "Update Business Settings" %>
+      <div>
+        <%= form.label :timezone, "Timezone", class: "block text-sm font-medium text-gray-dark mb-2" %>
+        <%= form.select :timezone,
+            ActiveSupport::TimeZone.all.map { |tz| [tz.name, tz.name] },
+            { prompt: "Select your timezone" },
+            class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-light-blue focus:border-light-blue transition-colors" %>
+      </div>
+
+      <div>
+        <%= form.label :reminder_hours_before, "Appointment Reminder Hours Before", class: "block text-sm font-medium text-gray-dark mb-2" %>
+        <%= form.number_field :reminder_hours_before,
+            class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-light-blue focus:border-light-blue transition-colors",
+            placeholder: "24",
+            min: 1 %>
+        <p class="mt-1 text-sm text-gray-600">Number of hours before an appointment to send a reminder (default: 24)</p>
+      </div>
+
+      <div>
+        <%= form.submit @business.new_record? ? "Create Business Profile" : "Update Business Settings",
+            class: "px-6 py-3 bg-navy text-white rounded-lg hover:bg-dark-blue transition-colors font-medium" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
 <% end %>
