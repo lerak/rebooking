@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_025158) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_031316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -34,6 +34,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_025158) do
     t.string "timezone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "twilio_phone_number"
+    t.integer "reminder_hours_before", default: 24
     t.index ["name"], name: "index_businesses_on_name"
   end
 
@@ -76,11 +78,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_025158) do
     t.uuid "business_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "twilio_sid"
+    t.text "error_message"
+    t.datetime "delivered_at"
     t.index ["business_id", "created_at"], name: "index_messages_on_business_id_and_created_at"
     t.index ["business_id"], name: "index_messages_on_business_id"
     t.index ["customer_id"], name: "index_messages_on_customer_id"
     t.index ["direction"], name: "index_messages_on_direction"
     t.index ["status"], name: "index_messages_on_status"
+    t.index ["twilio_sid"], name: "index_messages_on_twilio_sid"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

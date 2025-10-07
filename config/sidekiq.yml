@@ -7,6 +7,11 @@
   - mailers
   - low_priority
 
+:schedule:
+  schedule_appointment_reminders:
+    cron: '0 * * * *' # Every hour at minute 0
+    class: ScheduleAppointmentRemindersJob
+
 development:
   :concurrency: 3
 

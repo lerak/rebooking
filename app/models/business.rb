@@ -6,4 +6,5 @@ class Business < ApplicationRecord
 
   validates :name, presence: true
   validates :timezone, presence: true
+  validates :reminder_hours_before, numericality: { greater_than: 0, only_integer: true }, allow_nil: true
 end

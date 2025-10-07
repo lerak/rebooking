@@ -28,6 +28,7 @@ gem "acts_as_tenant"
 
 # Background jobs
 gem "sidekiq"
+gem "sidekiq-cron"
 gem "redis"
 
 # Twilio SMS integration
