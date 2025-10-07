@@ -109,7 +109,7 @@ Based on PRD: `0002-prd-messaging-mvp.md`
   - [x] 2.12 Add automatic consent creation when customer is created with phone number (after_create callback)
   - [x] 2.13 Test automatic consent creation in customer_spec.rb
 
-- [ ] 3.0 Build Automated Appointment Reminder System
+- [x] 3.0 Build Automated Appointment Reminder System
   - [x] 3.1 Create migration to add twilio_phone_number and reminder_hours_before (default 24) to businesses table
   - [x] 3.2 Update Business model with twilio configuration fields and validations
   - [x] 3.3 Create SendMessageJob to send SMS via TwilioService (accept customer, message body, business)
