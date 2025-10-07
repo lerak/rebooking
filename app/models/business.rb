@@ -3,6 +3,7 @@ class Business < ApplicationRecord
   has_many :customers, dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :twilio_phone_numbers, dependent: :destroy
 
   validates :name, presence: true
   validates :timezone, presence: true

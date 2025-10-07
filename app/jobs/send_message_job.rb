@@ -1,7 +1,7 @@
 class SendMessageJob < ApplicationJob
   queue_as :default
 
-  def perform(customer_id, message_body, business_id)
+  def perform(customer_id, message_body, business_id, appointment_id: nil)
     customer = Customer.find(customer_id)
     business = Business.find(business_id)
 
@@ -11,8 +11,8 @@ class SendMessageJob < ApplicationJob
       return
     end
 
-    # Use business's Twilio phone number or fall back to global config
-    from_number = business.twilio_phone_number || TWILIO_PHONE_NUMBER
+    # Determine which phone number to use
+    from_number = determine_from_number(business, appointment_id)
 
     # Send SMS via Twilio
     twilio_service = TwilioService.new
@@ -59,5 +59,23 @@ class SendMessageJob < ApplicationJob
       partial: "messages/message",
       locals: { message: failed_message }
     )
+  end
+
+  private
+
+  def determine_from_number(business, appointment_id)
+    # If appointment_id is provided, try to find location-specific phone number
+    if appointment_id.present?
+      appointment = Appointment.find(appointment_id)
+
+      # Look for an active phone number for this location
+      if appointment.location.present?
+        location_phone = business.twilio_phone_numbers.active.find_by(location: appointment.location)
+        return location_phone.phone_number if location_phone
+      end
+    end
+
+    # Fall back to business's default Twilio phone number
+    business.twilio_phone_number || TWILIO_PHONE_NUMBER
   end
 end

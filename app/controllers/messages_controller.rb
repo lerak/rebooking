@@ -14,6 +14,16 @@ class MessagesController < ApplicationController
   def show
   end
 
+  def thread
+    @customer = current_user.business.customers.find(params[:customer_id])
+    @messages = current_user.business.messages.where(customer: @customer).order(created_at: :asc)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to messages_path }
+    end
+  end
+
   def create
     @customer = current_user.business.customers.find(params[:customer_id])
 

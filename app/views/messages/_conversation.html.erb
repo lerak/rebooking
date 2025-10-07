@@ -1,5 +1,10 @@
-<div class="border-b border-gray-200 p-4 hover:bg-gray-100 cursor-pointer"
-     data-customer-id="<%= customer.id %>"
+<%= link_to thread_messages_path(customer_id: customer.id),
+    data: {
+      controller: "conversation",
+      action: "click->conversation#load"
+    },
+    class: "block border-b border-gray-200 p-4 hover:bg-gray-100 cursor-pointer no-underline text-inherit" do %>
+<div data-customer-id="<%= customer.id %>"
      role="button"
      tabindex="0"
      aria-label="Conversation with <%= customer.first_name %> <%= customer.last_name %>">
@@ -32,3 +37,4 @@
     </div>
   <% end %>
 </div>
+<% end %>

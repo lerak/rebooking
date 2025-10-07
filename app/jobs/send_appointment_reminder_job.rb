@@ -9,8 +9,8 @@ class SendAppointmentReminderJob < ApplicationJob
     # Format the reminder message
     reminder_message = format_reminder_message(appointment)
 
-    # Queue the message to be sent
-    SendMessageJob.perform_later(customer.id, reminder_message, business.id)
+    # Queue the message to be sent with appointment_id for location-based phone number
+    SendMessageJob.perform_later(customer.id, reminder_message, business.id, appointment_id: appointment.id)
   end
 
   private

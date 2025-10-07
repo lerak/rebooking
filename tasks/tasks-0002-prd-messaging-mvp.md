@@ -171,18 +171,18 @@ Based on PRD: `0002-prd-messaging-mvp.md`
 - [x] 5.0 Create Business Inbox UI with Real-time Updates
 
 - [ ] 6.0 Implement Multi-Phone Number Management
-  - [ ] 6.1 Create TwilioPhoneNumber model with business_id, phone_number, status (pending, approved, active), location
-  - [ ] 6.2 Create migration for twilio_phone_numbers table (id, business_id, phone_number, status, location, created_at, updated_at)
-  - [ ] 6.3 Add associations (Business has_many twilio_phone_numbers, TwilioPhoneNumber belongs_to business)
-  - [ ] 6.4 Create Settings::TwilioPhoneNumbersController for phone number management (index, new, create)
-  - [ ] 6.5 Add routes for phone number management (namespace settings, resources twilio_phone_numbers)
-  - [ ] 6.6 Create settings/twilio_phone_numbers/index.html.erb to list phone numbers and their status
-  - [ ] 6.7 Create settings/twilio_phone_numbers/new.html.erb form to request new phone number (location field)
-  - [ ] 6.8 Implement create action to create phone number request with status=pending
-  - [ ] 6.9 Add admin approval workflow (manual for MVP - update status to approved via rails console)
-  - [ ] 6.10 Update SendMessageJob to use business.twilio_phone_number or appointment.business.twilio_phone_numbers.find_by(location: appointment.location)
-  - [ ] 6.11 Add location field to appointments table (migration) to support location-based phone number assignment
-  - [ ] 6.12 Write RSpec model tests for TwilioPhoneNumber (validations, associations, status enum)
-  - [ ] 6.13 Write RSpec request tests for Settings::TwilioPhoneNumbersController (index, create, authorization)
-  - [ ] 6.14 Write system spec for phone number request flow (request → pending status → admin approval)
-  - [ ] 6.15 Document admin approval process in README or setup guide
+  - [x] 6.1 Create TwilioPhoneNumber model with business_id, phone_number, status (pending, approved, active), location
+  - [x] 6.2 Create migration for twilio_phone_numbers table (id, business_id, phone_number, status, location, created_at, updated_at)
+  - [x] 6.3 Add associations (Business has_many twilio_phone_numbers, TwilioPhoneNumber belongs_to business)
+  - [x] 6.4 Create Settings::TwilioPhoneNumbersController for phone number management (index, new, create)
+  - [x] 6.5 Add routes for phone number management (namespace settings, resources twilio_phone_numbers)
+  - [x] 6.6 Create settings/twilio_phone_numbers/index.html.erb to list phone numbers and their status
+  - [x] 6.7 Create settings/twilio_phone_numbers/new.html.erb form to request new phone number (location field)
+  - [x] 6.8 Implement create action to create phone number request with status=pending
+  - [x] 6.9 Add admin approval workflow (manual for MVP - update status to approved via rails console)
+  - [x] 6.10 Update SendMessageJob to use business.twilio_phone_number or appointment.business.twilio_phone_numbers.find_by(location: appointment.location)
+  - [x] 6.11 Add location field to appointments table (migration) to support location-based phone number assignment
+  - [x] 6.12 Write RSpec model tests for TwilioPhoneNumber (validations, associations, status enum)
+  - [x] 6.13 Write RSpec request tests for Settings::TwilioPhoneNumbersController (index, create, authorization)
+  - [x] 6.14 Write system spec for phone number request flow (request → pending status → admin approval)
+  - [x] 6.15 Document admin approval process in README or setup guide

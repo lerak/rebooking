@@ -18,7 +18,8 @@ RSpec.describe SendAppointmentReminderJob, type: :job do
       }.to have_enqueued_job(SendMessageJob).with(
         customer.id,
         /Reminder: You have an appointment on/,
-        business.id
+        business.id,
+        { appointment_id: appointment.id }
       )
     end
 
@@ -33,7 +34,8 @@ RSpec.describe SendAppointmentReminderJob, type: :job do
       expect(SendMessageJob).to have_received(:perform_later).with(
         customer.id,
         expected_message,
-        business.id
+        business.id,
+        appointment_id: appointment.id
       )
     end
 
@@ -45,7 +47,8 @@ RSpec.describe SendAppointmentReminderJob, type: :job do
       expect(SendMessageJob).to have_received(:perform_later).with(
         customer.id,
         /Test Clinic/,
-        business.id
+        business.id,
+        appointment_id: appointment.id
       )
     end
   end

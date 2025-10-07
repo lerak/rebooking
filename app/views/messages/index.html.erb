@@ -20,16 +20,16 @@
     </aside>
 
     <!-- Right column: Message thread -->
-    <main class="w-2/3 flex flex-col" role="main" aria-label="Message thread">
-      <div id="message-thread" class="flex-1 overflow-y-auto p-4 bg-gray-50" role="region" aria-label="Message history">
+    <main class="w-2/3 flex flex-col" role="main" aria-label="Message thread" data-controller="conversation">
+      <div id="message-thread" class="flex-1 overflow-y-auto p-4 bg-gray-50" role="region" aria-label="Message history" data-action="click@window->conversation#handleOutsideClick">
         <div class="text-center text-gray-600 mt-20" role="status">
           <p>Select a conversation to view messages</p>
         </div>
       </div>
 
       <!-- Message input form (will be shown when conversation is selected) -->
-      <div id="message-form-container" class="border-t border-gray-300 p-4 bg-white hidden" role="form" aria-label="Send message">
-        <!-- Message form will be inserted here via Turbo Stream or JavaScript -->
+      <div id="message-form-container" role="form" aria-label="Send message">
+        <!-- Message form will be inserted here via Turbo Stream -->
       </div>
     </main>
   </div>

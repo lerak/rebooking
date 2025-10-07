@@ -16,11 +16,16 @@ Rails.application.routes.draw do
   # Resource routes
   resources :customers
   resources :appointments
-  resources :messages, only: [:index, :show, :create]
+  resources :messages, only: [:index, :show, :create] do
+    collection do
+      get 'thread/:customer_id', to: 'messages#thread', as: 'thread'
+    end
+  end
 
   # Settings namespace
   namespace :settings do
     resource :business, only: [:edit, :update]
+    resources :twilio_phone_numbers, only: [:index, :new, :create]
   end
 
   # Twilio webhooks

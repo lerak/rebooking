@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_035111) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_152231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -23,6 +23,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_035111) do
     t.uuid "business_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
     t.index ["business_id", "start_time"], name: "index_appointments_on_business_id_and_start_time"
     t.index ["business_id"], name: "index_appointments_on_business_id"
     t.index ["customer_id"], name: "index_appointments_on_customer_id"
@@ -90,6 +91,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_035111) do
     t.index ["twilio_sid"], name: "index_messages_on_twilio_sid"
   end
 
+  create_table "twilio_phone_numbers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "business_id", null: false
+    t.string "phone_number", null: false
+    t.integer "status", default: 0, null: false
+    t.string "location", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id", "location"], name: "index_twilio_phone_numbers_on_business_id_and_location"
+    t.index ["business_id"], name: "index_twilio_phone_numbers_on_business_id"
+    t.index ["phone_number"], name: "index_twilio_phone_numbers_on_phone_number", unique: true
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -111,5 +124,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_035111) do
   add_foreign_key "customers", "businesses"
   add_foreign_key "messages", "businesses"
   add_foreign_key "messages", "customers"
+  add_foreign_key "twilio_phone_numbers", "businesses"
   add_foreign_key "users", "businesses"
 end

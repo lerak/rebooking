@@ -1,0 +1,26 @@
+<%= turbo_stream.update "message-thread" do %>
+  <div class="border-b border-gray-300 p-4 bg-white sticky top-0">
+    <h2 class="text-lg font-semibold text-gray-900">
+      <%= @customer.first_name %> <%=@customer.last_name %>
+    </h2>
+    <p class="text-sm text-gray-600"><%= @customer.phone %></p>
+  </div>
+
+  <div class="flex-1 overflow-y-auto p-4 bg-gray-50" id="messages">
+    <% if @messages.empty? %>
+      <div class="text-center text-gray-600 mt-20">
+        <p>No messages yet. Start a conversation!</p>
+      </div>
+    <% else %>
+      <% @messages.each do |message| %>
+        <%= render partial: 'messages/message', locals: { message: message } %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= turbo_stream.update "message-form-container" do %>
+  <div class="border-t border-gray-200 p-6 bg-gradient-to-b from-gray-50 to-white">
+    <%= render partial: 'messages/message_form', locals: { customer: @customer } %>
+  </div>
+<% end %>

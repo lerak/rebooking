@@ -1,0 +1,65 @@
+<%= turbo_frame_tag "main_content" do %>
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+      <div class="mb-6">
+        <%= link_to settings_twilio_phone_numbers_path, class: "text-blue-600 hover:text-blue-800 font-semibold flex items-center" do %>
+          <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Back to Phone Numbers
+        <% end %>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Request New Phone Number</h1>
+      <p class="text-gray-600 mb-8">Submit a request for a new Twilio phone number. Your request will be reviewed by an administrator.</p>
+
+      <div class="bg-white shadow-md rounded-lg p-6">
+        <%= form_with(model: @twilio_phone_number, url: settings_twilio_phone_numbers_path, class: "space-y-6") do |form| %>
+          <% if @twilio_phone_number.errors.any? %>
+            <div class="bg-red-50 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              <h3 class="font-semibold mb-2"><%= pluralize(@twilio_phone_number.errors.count, "error") %> prohibited this request from being saved:</h3>
+              <ul class="list-disc list-inside">
+                <% @twilio_phone_number.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div>
+            <%= form.label :phone_number, "Phone Number", class: "block text-sm font-semibold text-gray-700 mb-2" %>
+            <%= form.text_field :phone_number,
+                placeholder: "+15555551234",
+                class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                required: true %>
+            <p class="mt-1 text-sm text-gray-500">Enter phone number in E.164 format (e.g., +15555551234)</p>
+          </div>
+
+          <div>
+            <%= form.label :location, "Location/Business Name", class: "block text-sm font-semibold text-gray-700 mb-2" %>
+            <%= form.text_field :location,
+                placeholder: "Downtown Office",
+                class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                required: true %>
+            <p class="mt-1 text-sm text-gray-500">Specify which location or department will use this number</p>
+          </div>
+
+          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <h3 class="text-sm font-semibold text-yellow-900 mb-2">Important Information</h3>
+            <ul class="text-sm text-yellow-800 space-y-1">
+              <li>• Your request will be submitted with <strong>Pending</strong> status</li>
+              <li>• An administrator will review and approve your request</li>
+              <li>• You will be notified when the phone number is activated</li>
+              <li>• Ensure the phone number is already purchased in your Twilio account</li>
+            </ul>
+          </div>
+
+          <div class="flex items-center justify-end space-x-4">
+            <%= link_to "Cancel", settings_twilio_phone_numbers_path, class: "px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-semibold transition-colors" %>
+            <%= form.submit "Submit Request", class: "px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors cursor-pointer" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
